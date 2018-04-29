@@ -205,6 +205,7 @@ while getopts "i46bt:z:" opt; do
         t)  TYPE="$OPTARG"
         ;;
         z)  zone="$OPTARG"
+            read -p "Please enter the domain: " domain
         ;;
         h)  HELP >&2
         ;;
@@ -233,8 +234,7 @@ if [ $BACKEND = "YES" ]; then configure-BACKEND $MYSQL_DB_USER $MYSQL_DB_PASSWOR
 # Create zone
 case $zone in
     4)
-        read -p "Please enter the domain: " domain
-        read -p "Please enter the A Records IP: " ARecord
+        if [ $TYPE = "MASTER" ]; then read -p "Please enter the A Records IP: " ARecord; fi
         # If the masteripv4 slaveipv4 haven't been read before 
         if [ $IPv4 != "YES" ];then
             read -p "Please enter the master IPv4: " masteripv4
@@ -243,8 +243,7 @@ case $zone in
         create-ipv4-zone $TYPE $domain $masteripv4 $slaveipv4 $ARecord
     ;;
     6)
-        read -p "Please enter the domain: " domain
-        read -p "Please enter the AAAA Records IP: " AAAARecord
+        if [ $TYPE = "MASTER" ]; then read -p "Please enter the AAAA Records IP: " AAAARecord; fi
         # If the masteripv6 slaveipv6 haven't been read before 
         if [ $IPv6 != "YES" ];then
             read -p "Please enter the master IPv6: " masteripv6
@@ -253,9 +252,10 @@ case $zone in
         create-ipv6-zone $TYPE $domain $masterIPv6 $slaveIPv6 $AAAARecord
     ;;
     46)
-        read -p "Please enter the domain: " domain
-        read -p "Please enter the A Records IP: " ARecord
-        read -p "Please enter the AAAA Records IP: " AAAARecord
+        if [ $TYPE = "MASTER" ]; then
+            read -p "Please enter the A Records IP: " ARecord
+            read -p "Please enter the AAAA Records IP: " AAAARecord
+        fi
         if [ $IPv6 != "YES" ];then
             read -p "Please enter the master IPv6: " masteripv6
             read -p "Please enter the slave IPv6: " slaveipv6
