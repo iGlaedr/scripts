@@ -1,2 +1,2 @@
 use powerdns;
-INSERT INTO domains VALUES ('example.com','placeNS0',1524317412,'SLAVE',NULL,'');
+INSERT INTO domains VALUES ('example.com','placeNS0:53',1524317412,'SLAVE',NULL,'');
