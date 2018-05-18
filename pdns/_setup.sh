@@ -2,7 +2,7 @@
 function HELP {
     echo "
         -i                  Install packages for PDNS with MySQL
-        -4                  Configure PDNS Service with IPv4, if you don't want to configure IPv6 do not use -4
+        -4                  Configure PDNS Service with IPv4, if you don't want to configure IPv4 do not use -4
         -6                  Configure PDNS Service with IPv6, if you don't want to configure IPv6 do not use -6
         -b                  Configure PDNS BACKEND and creating the DB, if you don't want to configure the BACKEND do not use -b
         -t  [MASTER|SLAVE]  Configure Server as master or slave
